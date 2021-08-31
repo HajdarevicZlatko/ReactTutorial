@@ -1,11 +1,26 @@
+import ExpensesFilter from "./ExpenseFilter";
 import ExpenseItem from "./ExpenseItem";
-function Expences({expenses} = {expenses}) {
-    let ex = expenses;
-    return (
-        <div className="expenses">
-            <ExpenseItem title={ex[0].title} amount={ex[0].amount} date={ex[0].date}></ExpenseItem>
-            <ExpenseItem title={ex[1].title} amount={ex[1].amount} date={ex[1].date}></ExpenseItem>
-        </div>
-        );
+import React, {useState} from "react";
+function Expences(props) {
+    const[filteredYear, setFilteredYear]=useState('2020');
+    const onDateFilterChange=(date)=>
+    {
+        setFilteredYear(date);
+    }
+  return (
+    <div className="expenses">
+      <ExpensesFilter selectedDate={filteredYear} onFilterDateChange={onDateFilterChange}></ExpensesFilter>
+      <ExpenseItem
+        title={props.expenses[0].title}
+        amount={props.expenses[0].amount}
+        date={props.expenses[0].date}
+      ></ExpenseItem>
+      <ExpenseItem
+        title={props.expenses[1].title}
+        amount={props.expenses[1].amount}
+        date={props.expenses[1].date}
+      ></ExpenseItem>
+    </div>
+  );
 }
 export default Expences;
