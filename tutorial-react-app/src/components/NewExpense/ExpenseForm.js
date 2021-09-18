@@ -19,7 +19,14 @@ const dateChangeHandler = (event)=>
 {
     setEnteredDate(event.target.value);
 };
+
 /*Second approach */
+
+let onCancelClick =(event) =>
+{
+event.preventDefault();
+props.setShowExp('false');
+}
   const [userInput, setUserInput] = useState({
     enteredTitle: "",
     enteredAmount: "",
@@ -93,6 +100,7 @@ const dateChangeHandler = (event)=>
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={onCancelClick}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
